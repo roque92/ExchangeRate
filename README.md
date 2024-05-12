@@ -9,7 +9,7 @@ Esta es una aplicacion de consola que les dara la oportunidad de poder saber cua
 ![Static Badge](https://img.shields.io/badge/Apache_Maven-3.9.6-blue)
 
 Tecnologias utilizadas para este proyecto
-## Documentation
+## Documentacion
 
 **Como Usarlo:**
 - Descargar la JVM (Java Virtual Machine) desde el siguiente enlace (Sitio Oficial) ![Static Badge](https://img.shields.io/badge/Sitio_Oficial-https%3A%2F%2Fwww.java.com%2Fes%2Fdownload%2Fie_manual.jsp-purple)
