@@ -1,36 +1,39 @@
 package Connection;
 
-import java.net.URI;
-
-import Model.Conversion;
-import Model.DVO;
+import Model.SingletonDVO;
 import com.google.gson.Gson;
 
+import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 
 public class APIClient {
-    static Gson gson = new Gson();
+    private static final SingletonDVO dvo = SingletonDVO.obtenerInstancia();
+    private static final Gson gson = new Gson();
 
 
-    public static DVO connection(String base, String target){
 
-        DVO dvo = new DVO();
-       try {
+    public void APIConnection(String base, String target){
+        try {
            HttpClient client = HttpClient.newHttpClient();
            HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create( Enviroment.BASE_URL + base + "/" + target))
                     .build();
            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
            String responseBody = response.body();
-            dvo = gson.fromJson(responseBody, DVO.class);
+           actualizarDVO(responseBody);
         } catch (Exception e) {
-            dvo.setURIErrorMesssage(e.getMessage());
+            e.printStackTrace();
         }
-        return dvo;
 
+    }
+
+    private void actualizarDVO(String responseBody) {
+        // Actualiza el objeto DVO con los datos del JSON
+        SingletonDVO nuevoDVO = gson.fromJson(responseBody, SingletonDVO.class);
+        dvo.setRate(nuevoDVO.getRate());
     }
 
 

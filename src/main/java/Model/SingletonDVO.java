@@ -2,10 +2,16 @@ package Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DVO {
+public class SingletonDVO {
+    private static SingletonDVO instancia;
     private String URIerrorMesssage;
     private double amount;
     private double total;
+    private String baseName;
+    private String targetName;
+    private String formatedRate;
+    private String formatedTotal;
+
 
     @SerializedName("base_code")
     private String base;
@@ -182,13 +188,14 @@ public class DVO {
     //Contructor
 
 
-    public DVO() {
+    private SingletonDVO() {
     }
 
-    public DVO(String base, String target, double rate) {
-        this.base = base;
-        this.target = target;
-        this.rate = rate;
+    public static SingletonDVO obtenerInstancia() {
+        if (instancia == null) {
+            instancia = new SingletonDVO();
+        }
+        return instancia;
     }
 
     //Setter & Getter
@@ -236,7 +243,7 @@ public class DVO {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -244,12 +251,51 @@ public class DVO {
         return total;
     }
 
-    public void setTotal(double total) {
+    public double setTotal(double total) {
         this.total = total;
+        return total;
+    }
+
+    public String getBaseName() {
+        return baseName;
+    }
+
+    public void setBaseName(String baseName) {
+        this.baseName = baseName;
+    }
+
+    public String getTargetName() {
+        return targetName;
+    }
+
+    public void setTargetName(String targetName) {
+        this.targetName = targetName;
+    }
+
+    public String getFormatedRate() {
+        return formatedRate;
+    }
+
+    public void setFormatedRate(String formatedRate) {
+        this.formatedRate = formatedRate;
+    }
+
+    public String getFormatedTotal() {
+        return formatedTotal;
+    }
+
+    public void setFormatedTotal(String formatedTotal) {
+        this.formatedTotal = formatedTotal;
     }
 
     @Override
     public String toString() {
-         return "Moneda base: "+ base + "\nmoneda target: " + target + "\ntasa de cambio: " + rate + "\nmonto total: " + total;
+         return "\nMoneda base: "+ base + " - " + baseName +
+                 "\nmoneda objetivo: " + target + " - " + targetName +
+                 "\ntasa de cambio: " + formatedRate +
+                 "\nLa tasa de cambio es: 1 " +  baseName + " equivale a " + formatedRate + " "+ targetName +
+                 "\nmonto de : " + amount + " " + base + " - " + baseName +
+                 "\nEquivale a: " + formatedTotal + " " + target + " - " + targetName;
     }
+
 }

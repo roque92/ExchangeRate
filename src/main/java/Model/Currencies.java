@@ -4,9 +4,9 @@ package Model;
 import java.util.Random;
 
 public class Currencies {
-    static DVO dvo = new DVO();
+    SingletonDVO singletonDvo = SingletonDVO.obtenerInstancia();
 
-    public static int[] generateRandomIndices(int arrayLength, int numIndices) {
+    public int[] generateRandomIndices(int arrayLength, int numIndices) {
         Random random = new Random();
         int[] indices = new int[numIndices];
         boolean[] used = new boolean[arrayLength];
@@ -23,22 +23,24 @@ public class Currencies {
         return indices;
     }
 
-    public static void showRandomCurrencies(String[][] currencies, int[] randomIndices) {
+    public void showRandomCurrencies(String[][] currencies, int[] randomIndices) {
         int i = 1;
         for (int index : randomIndices) {
-            System.out.println(i + ". " + dvo.getCurrencies()[index][0] + " - " + dvo.getCurrencies()[index][1]);
+            System.out.println(i + ". " + singletonDvo.getCurrencies()[index][0] + " - " + singletonDvo.getCurrencies()[index][1]);
             i++;
         }
     }
 
-    public static void handleChoiceBase(DVO dvo, String[][] currencies, int[] randomIndices, int index) {
+    public void handleChoiceBase(SingletonDVO singletonDvo, String[][] currencies, int[] randomIndices, int index) {
         int chosenIndex = randomIndices[index];
-        dvo.setBase(currencies[chosenIndex][0]);
+        singletonDvo.setBase(currencies[chosenIndex][0]);
+        singletonDvo.setBaseName(currencies[chosenIndex][1]);
     }
 
-    public static void handleChoiceTarget(DVO dvo, String[][] currencies, int[] randomIndices, int index) {
+    public void handleChoiceTarget(SingletonDVO singletonDvo, String[][] currencies, int[] randomIndices, int index) {
         int chosenIndex = randomIndices[index];
-        dvo.setTarget(currencies[chosenIndex][0]);
+        singletonDvo.setTarget(currencies[chosenIndex][0]);
+        singletonDvo.setTargetName(currencies[chosenIndex][1]);
     }
 
 }
