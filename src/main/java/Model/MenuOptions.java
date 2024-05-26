@@ -23,7 +23,7 @@ public class MenuOptions {
     public void options() {
         try {
             //obten la moneda base
-            System.out.println("\n--Seleccione la moneda que desea convertir\n--Ingresa 0 para salir\n");
+            System.out.println("\n--Seleccione la moneda que desea convertir.\n--Ingresa 0 para salir.\n");
             currency.showRandomCurrencies(currencies, randomIndices);
             System.out.println("\nPresione enter para continuar");
 
