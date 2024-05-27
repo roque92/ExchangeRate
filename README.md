@@ -3,6 +3,8 @@
 # Exchange Rate
 
 Esta es una aplicacion de consola que les dara la oportunidad de poder saber cual es el tipo entre ciertas monedas por ejemplo, UDS, GBP, GTQ, JPN, etc.
+
+Se hace la integracion de CI con Github Actions
 ## Stack de Tecnologias
 
 ![Static Badge](https://img.shields.io/badge/JAVA-21.0.1-blue)
